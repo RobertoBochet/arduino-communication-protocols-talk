@@ -1,0 +1,123 @@
+<section>
+	<h3>Let us start with a recap</h3>
+	<p class="fragment">In the previous days we saw...</p>
+	<p class="fragment">...methods to work with <b>digital</b> signals...<br/>
+		<small>e.g. <a target="_blank"
+					   href="https://www.arduino.cc/reference/en/language/functions/digital-io/digitalwrite/"><code>digitalWrite</code></a>,
+			<a target="_blank"
+			   href="https://www.arduino.cc/reference/en/language/functions/digital-io/digitalread/"><code>digitalRead</code></a></small>
+	</p>
+
+	<p class="fragment">...and methods to work with <b>analog</b> signals<br/>
+		<small>e.g. <a target="_blank"
+					   href="https://www.arduino.cc/reference/en/language/functions/analog-io/analogread/"><code>analogRead</code></a></small>
+	</p>
+	<small class="fragment">We can already notice one <b>big absent</b> in the list above, can you see it?</small>
+</section>
+
+<section>
+	<p><b>Arduino UNO</b> does not have a <a target="_blank" href="https://en.wikipedia.org/wiki/Digital-to-analog_converter"><b>DAC*</b></a>
+	</p>
+
+	<p class="fragment">*<b>D</b>igital to <b>A</b>nalog <b>C</b>onverter<br/> which is an electrical system that allows
+		us<br/>to generate <b>analog</b> signals</p>
+
+	<small class="fragment">You can figure it out by checking the <a target="_blank"
+																  href="https://docs.arduino.cc/static/0102b24f244bdaf69ef866908eb98e96/A000066-datasheet.pdf">Arduino
+		UNO R3 datasheet</a></small>
+
+	<p class="fragment"><a target="_blank"
+						   href="https://www.arduino.cc/reference/en/language/functions/analog-io/analogwrite/"><code>analogWrite</code></a>
+		function is the biggest Arduino scam!</p>
+</section>
+
+<section>
+	<h4>But, if I need a <b>DAC</b> in my project<br/>do I have to drop my Arduino UNO R3?</h4>
+	<img class="fragment" src="./images/no.jpg" alt="no"/>
+</section>
+
+<section>
+	<p>We can include an <b>external component</b> in our circuit<br/>which will carry out the missing role...</p>
+	<p class="fragment">...in the same way we previously<br/>introduced LEDs in our circuits</p>
+
+	<small class="fragment">An external <b>DAC</b> can be bought for a few euros<br/>
+		e.g. <a target="_blank" href="https://it.rs-online.com/web/p/convertitori-digitaleanalogico/8895531">DAC
+			MCP4921</a></small>
+</section>
+
+<section>
+	<p>Still a problem...</p>
+	<h4 class="fragment">...how can we "communicate" with it?</h4>
+	<h3 class="fragment">We need a <a target="_blank" href="https://en.wikipedia.org/wiki/Communication_protocol">communication
+		protocol</a></h3>
+</section>
+
+<section>
+	<blockquote cite="https://en.wikipedia.org/wiki/Communication_protocol">A communication protocol is a <b>system of rules</b> that allows <b>two or more entities</b> of a communications
+		system to <b>transmit information</b> via any kind of variation of a physical quantity<br/>
+		<cite><small style="padding-top: 10px">~from wikipedia, "<a target="_blank" href="https://en.wikipedia.org/wiki/Communication_protocol">communication protocol</a>" page</small></cite>
+	</blockquote>
+</section>
+
+<section>
+	<h4>Slide for pro users</h4>
+	<p class="fragment">If you have confidence with the concept of communication protocol you probably know the <a target="_blank" href="https://en.wikipedia.org/wiki/OSI_model">OSI model</a></p>
+
+	<table class="fragment" style="font-size: 0.4em; margin: initial;">
+		<thead><tr>
+			<th></th>
+			<th>#</th>
+			<th>Layer</th>
+			<th>Function</th>
+		</tr></thead>
+		<tbody>
+		<tr>
+			<td rowspan="4">Host layers</td>
+			<td>7</td>
+			<td>Application</td>
+			<td>High-level APIs, including resource sharing, remote file access</td>
+		</tr>
+		<tr>
+			<td>6</td>
+			<td>Presentation</td>
+			<td>Translation of data between a networking service and an application; including character encoding, data compression and encryption/decryption</td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>Session</td>
+			<td>Managing communication sessions, i.e., continuous exchange of information in the form of multiple back-and-forth transmissions between two nodes </td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>Transport</td>
+			<td>Reliable transmission of data segments between points on a network, including segmentation, acknowledgement and multiplexing</td>
+		</tr>
+		<tr>
+			<td rowspan="3">Media layers</td>
+			<td>3</td>
+			<td>Network</td>
+			<td>Structuring and managing a multi-node network, including addressing, routing and traffic control</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>Data link</td>
+			<td>Transmission of data frames between two nodes connected by a physical layer</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>Physical</td>
+			<td>Transmission and reception of raw bit streams over a physical medium</td>
+		</tr>
+		</tbody>
+	</table>
+</section>
+
+<section>
+	<p>Luckily, with a <b>few low level protocols</b> we can communicate with more or less <b>any commercial</b> "chip" or "board"</p>
+
+	<p class="fragment">Also <b>Arduino UNO R3</b><br/>(or better its core <a target="_blank" href="https://www.microchip.com/en-us/product/ATmega328P"><b>ATMEGA328P</b></a>)</br>supports some of them</p>
+</section>
+
+<section>
+	<h3>Did we previously use any of those protocols?</h3>
+</section>

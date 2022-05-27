@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="75" version="1.1" viewBox="-.5 -.5 400 75" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <path d="m307.5 24.5-180-0.48" fill="none" pointer-events="stroke" stroke="#fff" stroke-miterlimit="10" stroke-width="4"/>
+ <path d="m307.5 49.5h-180" fill="none" pointer-events="stroke" stroke="#fff" stroke-miterlimit="10" stroke-width="4"/>
+ <rect x="7.5" y="6.5" width="120" height="60" rx="9" ry="9" fill="#6a00ff" pointer-events="all" stroke="#3700cc"/>
+ <text x="67.25" y="44.135406" fill="#ffffff" font-family="Helvetica" font-size="21.333px" text-anchor="middle">DEVICE</text>
+ <rect x="271.5" y="6.5" width="120" height="60" rx="9" ry="9" fill="#6a00ff" pointer-events="all" stroke="#3700cc"/>
+ <g fill="#ffffff" font-family="Helvetica">
+  <text x="331.25" y="44.135406" font-size="21.333px" text-anchor="middle">DEVICE</text>
+  <g font-size="18px">
+   <text x="241" y="19"><tspan font-family="Helvetica" font-weight="bold">TX</tspan></text>
+   <text x="241" y="68" font-weight="bold">RX</text>
+   <text x="133" y="68"><tspan font-family="Helvetica" font-weight="bold">TX</tspan></text>
+   <text x="133" y="19" font-weight="bold">RX</text>
+  </g>
+ </g>
+</svg>

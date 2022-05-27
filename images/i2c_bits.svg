@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.0" viewBox="0 0 840 140" xmlns="http://www.w3.org/2000/svg">
+ <g fill="#3771c8" fill-opacity=".78431">
+  <rect x="171.65" y="11.946" width="40" height="95"/>
+  <rect x="291.65" y="11.946" width="40" height="95"/>
+  <rect x="411.65" y="11.946" width="40" height="95"/>
+  <rect x="526.65" y="11.946" width="40" height="95"/>
+  <rect x="646.65" y="11.946" width="40" height="95"/>
+ </g>
+ <g fill="#ffffff" font-family="'Bitstream Vera Sans'" font-size="6px" stroke-width="1px">
+  <text x="11.868661" y="38.737576" xml:space="preserve"><tspan x="11.868661" y="38.737576" fill="#ffffff" font-size="12px" font-weight="bold">SDA</tspan></text>
+  <text x="12.694833" y="88.612572" xml:space="preserve"><tspan x="12.694833" y="88.612572" fill="#ffffff" font-size="12px" font-weight="bold">SCL</tspan></text>
+ </g>
+ <g fill="#fc0" fill-opacity=".78431">
+  <rect x="66.646" y="11.946" width="40" height="95"/>
+  <rect x="751.65" y="11.946" width="40" height="95"/>
+ </g>
+ <g fill="#ffd737" font-family="'Bitstream Vera Sans'" font-size="12px" stroke-width=".5">
+  <text x="763.31958" y="127.67879" xml:space="preserve"><tspan x="763.31958" y="127.67879" font-size="24px" font-weight="bold" stroke-width=".5">P</tspan></text>
+  <text x="78.794052" y="127.97176" xml:space="preserve"><tspan x="78.794052" y="127.97176" font-size="24px" font-weight="bold" stroke-width=".5">S</tspan></text>
+ </g>
+ <g fill="#aad400" fill-opacity=".78431">
+  <rect x="231.65" y="11.946" width="40" height="95"/>
+  <rect x="351.65" y="11.946" width="40" height="95"/>
+  <rect x="586.65" y="11.946" width="40" height="95"/>
+ </g>
+ <g fill="#bcdd37" font-family="'Bitstream Vera Sans'" font-size="12px" stroke-width=".5">
+  <text x="238.55284" y="127.67879" xml:space="preserve"><tspan x="238.55284" y="127.67879" fill="#bcdd37" font-size="24px" font-weight="bold" stroke-width=".5">B<tspan font-size="18px">1</tspan></tspan></text>
+  <text x="357.54211" y="127.67879" xml:space="preserve"><tspan x="357.54211" y="127.67879" fill="#bcdd37" font-size="24px" font-weight="bold" stroke-width=".5">B<tspan font-size="18px">2</tspan></tspan></text>
+  <text x="591.31604" y="127.67879" xml:space="preserve"><tspan x="591.31604" y="127.67879" fill="#bcdd37" font-size="24px" font-weight="bold" stroke-width=".5">B<tspan font-size="18px">N</tspan></tspan></text>
+ </g>
+ <g fill="none" stroke="#fff" stroke-width="2">
+  <path d="m51.646 21.946h30l10 25h95l10-25h110l10 25h110l10-25h40"/>
+  <path d="m51.646 71.946 104.75 0.25 10.25 24.75h50l10.25-25.25h50l10 25h50l10-25h50l9.75 25.25h50l10-25h10"/>
+  <path d="m51.646 21.946h-25" stroke-dasharray="6, 2"/>
+  <path d="m192.08 32.984 5 15 109.56-1.038 10-25h110l10 25h40"/>
+  <g stroke-dasharray="4, 2">
+   <path d="m475.71 46.946h26.705"/>
+   <path d="m475.71 21.946h27.046"/>
+   <path d="m475.71 71.946h26.62"/>
+  </g>
+  <path d="m501.65 71.946h10l10 25h50l10-25h50l10 25h50l10-25h125"/>
+  <path d="m826.65 21.946h-25" stroke-dasharray="6, 2"/>
+  <path d="m501.65 46.946h40l10-25h110l10 25h95l10-25h25"/>
+  <path d="m501.65 21.946h40l10 25h110l4.5423-13.958"/>
+ </g>
+</svg>

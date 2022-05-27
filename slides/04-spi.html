@@ -1,0 +1,68 @@
+<section>
+	<h2>SPI</h2>
+</section>
+
+<section>
+	<p style="font-size: 1.3em;"><b>S</b>erial <b>P</b>eripheral <b>I</b>nterface</p>
+
+	<ul style="font-size: 1em;">
+		<li class="fragment">It is a <b>bus</b> based protocol<br/>
+			<font size="+2">Data for all devices travels on the same wires</font></li>
+		<li class="fragment">It implements <b>master/slave</b> architecture<br/>
+			<font size="+2">Only the masters can start a payload exchange</font></li>
+		<li class="fragment">It requires <b>three wires</b> for data called <b>SCLK</b>, <b>MOSI</b><br/>and <b>MISO</b> plus one wire <b>SS</b> for each slave<br/>
+			<font size="+2">Plus a common ground, which is shared by all devices</font></li>
+		<li class="fragment">It is a <b>serial protocol</b><br/>
+			<font size="+2">Data is sent serially on the same wire</font></li>
+	</ul>
+</section>
+
+<section>
+	<p style="font-size: 1.3em;"><b>S</b>erial <b>P</b>eripheral <b>I</b>nterface</p>
+
+	<ul style="font-size: 1em;">
+		<li class="fragment">It is a <b>full-duplex</b> protocol<br/>
+			<font size="+2">Data can flow in <b>both directions</b> at the same moment<br/></font></li>
+		<li class="fragment">It is <b>synchronous</b><br/>
+			<font size="+2">The master emits on the <b>SCLK</b> wire a periodic signal in order to share a <b>common clock</b> for all devices</font></li>
+		<li class="fragment">It is a <b>fast</b> protocol (compared to others)</li>
+		<li class="fragment">It is <b>widely</b> used by integrated circuits<br>
+			<font size="+2">It is certainly (another) one of the most used communication <br>protocols for commercial chips</font></li>
+		</ul>
+</section>
+
+<section>
+	<img src="./images/spi_diagram.svg" alt="SPI diagram"/>
+</section>
+
+<section>
+	<p><b>Arduino UNO R3</b> integrates hardware to work with <b>SPI</b></p>
+
+	<p class="fragment">In particular Arduino provides the library <a target="_blank" href="https://www.arduino.cc/reference/en/language/functions/communication/spi/"><b>SPI</b></a> to use it</p>
+</section>
+
+<section>
+	<h4>Let us start with our project</h4>
+	<p class="fragment">Today we will interface Arduino with some <br/><a target="_blank" href="https://en.wikipedia.org/wiki/Contactless_smart_card"><b>contactless smart cards</b></a></p>
+	<p class="fragment">In particular with smart cards based on<br/>the <a target="_blank" href="https://en.wikipedia.org/wiki/MIFARE#MIFARE_Classic_family"><b>MIFARE Classic 1k chip</b></a></p>
+
+	<img src="./images/rfid.png" alt="RFID" style="height:200px;" class="fragment"/>
+</section>
+
+<section>
+	<p>Obviously, we cannot communicate directly<br/>with the <a target="_blank" href="https://en.wikipedia.org/wiki/MIFARE#MIFARE_Classic_family"><b>MIFARE Classic 1k</b></a> chip</p>
+
+	<p class="fragment" data-fragment-index="0">To communicate with it, we need a dedicated module</p>
+
+	<p class="fragment" data-fragment-index="1">In this case we chose to use a board based on <a target="_blank" href="https://www.nxp.com/docs/en/data-sheet/MFRC522.pdf"><b>MFRC522</b></a><br/>
+		<small>which is specifically designed to communicate with <a target="_blank" href="https://en.wikipedia.org/wiki/MIFARE"><b>MIFARE</b></a> IC and <a target="_blank" href="https://www.nxp.com/products/rfid-nfc/nfc-hf/ntag-for-tags-labels:NTAG-TAGS-AND-LABELS "><b>NTAG</b></a></small></p>
+
+	<small class="fragment" data-fragment-index="2">Remember to install the <a target="_blank" href="https://www.arduino.cc/reference/en/libraries/mfrc522/"><b>library</b></a> to interface with it</small>
+
+	<img src="./images/mfrc522_board.png" alt="MFRC522 board" style="height:225px;" class="fragment" data-fragment-index="1"/>
+</section>
+
+<section>
+	<h4>Let us add the component to our circuits</h4>
+	<img src="./images/nfc_oled_schematic.svg" alt="schematic nfc and oled" style="height:550px;"/>
+</section>
