@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="250" version="1.1" viewBox="-.5 -.5 500 250" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <g fill="none" pointer-events="stroke" stroke="#fff" stroke-miterlimit="10" stroke-width="4">
+  <path d="m474.5 184.5 0.03-59.97-350.03-0.03"/>
+  <path d="m304.5 184.5 0.03-29.97-180.03-0.03"/>
+  <path d="m209.5 94.5h-85"/>
+  <path d="m444.5 184.5 0.03-149.97-320.03-0.03"/>
+  <path d="m274.5 184.5v-150"/>
+  <path d="m244.5 184.5v-120"/>
+  <path d="m214.5 184.5v-90"/>
+ </g>
+ <rect x="194.5" y="184.5" width="130" height="60" rx="9" ry="9" fill="#60a917" pointer-events="all" stroke="#2d7600"/>
+ <text x="259.59375" y="222.13541" fill="#ffffff" font-family="Helvetica" font-size="21.333px" text-anchor="middle">SLAVE</text>
+ <g stroke="#fff">
+  <path d="m124.5 64.5h290v120-120" fill="none" pointer-events="stroke" stroke-miterlimit="10" stroke-width="4"/>
+  <circle cx="274.5" cy="34.5" r="5" fill="#fff" pointer-events="all"/>
+  <circle cx="214.5" cy="94.5" r="5" fill="#fff" pointer-events="all"/>
+  <path d="m384.5 94.5v90-90h-165" fill="none" pointer-events="stroke" stroke-miterlimit="10" stroke-width="4"/>
+  <circle cx="244.5" cy="64.5" r="5" fill="#fff" pointer-events="all"/>
+ </g>
+ <g fill="#ffffff" font-family="Helvetica" font-size="18px">
+  <text x="131" y="29">SCLK</text>
+  <text x="131" y="59">MOSI</text>
+  <text x="131" y="89">MISO</text>
+  <text x="131" y="119">SS1</text>
+  <text x="131" y="150">SS2</text>
+ </g>
+ <rect x="364.5" y="184.5" width="130" height="60" rx="9" ry="9" fill="#60a917" pointer-events="none" stroke="#2d7600"/>
+ <text x="429.59375" y="222.13541" fill="#ffffff" font-family="Helvetica" font-size="21.333px" text-anchor="middle">SLAVE</text>
+ <rect x="4.5" y="4.5" width="120" height="180" rx="18" ry="18" fill="#6a00ff" pointer-events="all" stroke="#3700cc"/>
+ <text x="63.843754" y="102.13541" fill="#ffffff" font-family="Helvetica" font-size="21.333px" text-anchor="middle">MASTER</text>
+</svg>

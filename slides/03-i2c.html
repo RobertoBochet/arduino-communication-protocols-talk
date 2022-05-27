@@ -1,0 +1,159 @@
+<section>
+	<h2>I<sup>2</sup>C</h2>
+</section>
+
+<section>
+	<p style="font-size: 1.3em;"><b>I</b>nter <b>I</b>ntegrated <b>C</b>ircuit</p>
+
+	<ul style="font-size: 0.85em;">
+		<li class="fragment">It is a <b>bus</b> based protocol<br/>
+			<font size="+2">Data for all devices travels on the same wires</font></li>
+		<li class="fragment">It implements <b>master/slave</b> architecture<br/>
+			<font size="+2">Only the masters can start a payload exchange, generally there is <br> only one master for each bus</font></li>
+		<li class="fragment">It allows up to <b>112</b> (7bit addresses) devices to communicate<br/>
+			<font size="+2">A review extended addresses to 10bit</font></li>
+		<li class="fragment">It requires only <b>two wires</b> called <b>SCL</b> and <b>SDA</b><br/>
+			<font size="+2">Plus a common ground, which is shared by all devices</font></li>
+		<li class="fragment">It is a <b>serial protocol</b><br/>
+			<font size="+2">Data is sent serially on the same wire</font></li>
+		<br><br><br> <!-- lmao? -->
+	</ul>
+</section>
+
+<section>
+	<p style="font-size: 1.3em;"><b>I</b>nter <b>I</b>ntegrated <b>C</b>ircuit</p>
+
+	<ul style="font-size: 0.85em;">
+		<li class="fragment">It is a <b>half-duplex</b> protocol<br/>
+			<font size="+2">Data can flow in <b>only one direction</b> at the same moment<br/></font></li>
+		<li class="fragment">It is <b>synchronous</b><br/>
+			<font size="+2">The master emits on the <b>SCL</b> wire a periodic signal in order to share a <b>common clock</b> for all devices</font></li>
+		<li class="fragment">It is a <b>slow</b> protocol (compared to others)<br/>
+			<font size="+2">The protocol has a standard baud rate of 100kbit/s, reviews introduced a speed up to 3.4Mbit/s (High Speed mode)</font></li>
+		<li class="fragment">It is intended to allow communication between <b>integrated circuits on the same pcb</b><br/>
+			<font size="+2">Bus length in the order of 10cm</font></li>
+		<li class="fragment">It is <b>widely</b> used by integrated circuits<br>
+			<font size="+2">It is certainly one of the most used communication protocol for commercial chips</font></li>
+	</ul>
+</section>
+
+<section>
+	<img src="./images/i2c_diagram.svg" alt="I2C diagram" style="max-width:initial;width:800px;" />
+</section>
+
+<section>
+	<h3>How does it work?</h3>
+
+	<h4 class="fragment">A common scenario</h4>
+
+	<ul style="font-size: 0.8em;">
+		<li class="fragment">The <b>master</b> device <b>initializes</b> the bus</li>
+		<li class="fragment">The <b>master</b> device sends the <b>address</b> of <br> the device it wants to call on the bus</li>
+		<li class="fragment">The called <b>slave</b> sends back an <b>ACK</b> to confirm that it is <b>available</b></li>
+		<li class="fragment">The <b>master</b> sends the <b>payload</b> (which could be a command) <br> to the selected <b>slave</b></li>
+		<li class="fragment">The <b>slave</b> processes the master request and <b>responds</b> to it</li>
+		<li class="fragment">The <b>master</b> resets the bus and the <b>communication concludes</b></li>
+	</ul>
+</section>
+
+<section>
+	<h3>What do you mean by synchronous?</h3>
+
+	<img class="fragment" src="./images/i2c_bits.svg" alt="i2c bits" style="max-width:initial;width:800px"/>
+</section>
+
+<section>
+	<p><b>Arduino UNO R3</b> integrates hardware to work on <b>I<sup>2</sup>C</b> bus both as master or slave</p>
+
+	<p class="fragment">In particular Arduino provides the library <a target="_blank" href="https://www.arduino.cc/reference/en/language/functions/communication/wire/"><b>Wire</b></a> to use it</p>
+</section>
+
+<section>
+	<h3>Let us try to utilize <b>I<sup>2</sup>C</b> to communicate<br/>with another device</h3>
+</section>
+
+<section>
+	<h4>OLED display based on <a target="_blank" href="https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf"><b>SSD1306</b></a></h4>
+
+	<img src="./images/oled.png" alt="oled" style="height: 300px"/>
+</section>
+
+<section>
+	<p>In order to interface with the <a target="_blank" href="https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf"><b>SSD1306</b></a> we can use <b>I<sup>2</sup>C</b>,<br>therefore we want to use the <b>Wire</b> library...</p>
+	<p class="fragment">...well, but how do we tell the OLED screen<br/>to draw what we want?</p>
+	<p class="fragment"><a target="_blank" href="https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf"><b>SSD1306</b></a> implements its own protocol<br/>which is structured above <b>I<sup>2</sup>C</b><br/><small>(like TCP exploits IP)</small></p>
+
+	<p class="fragment">Its definition can be found in the <a target="_blank" href="https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf"><b>SSD1306 datasheet</b></a>...</p>
+</section>
+
+<section>
+	<p>...alternatively, we can use a <a target="_blank" href="https://github.com/adafruit/Adafruit_SSD1306"><b>high level library</b></a> written by someone who studied the protocol</p>
+
+	<p class="fragment">So, today we will use<br/>the official <a target="_blank" href="https://www.adafruit.com/"><b>Adafruit</b></a> library for <a target="_blank" href="https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf"><b>SSD1306</b></a></p>
+
+	<h4 class="fragment"><a target="_blank" href="https://www.arduino.cc/reference/en/libraries/adafruit-ssd1306/">Adafruit SSD1306</a></h4>
+
+	<p class="fragment">Let us install it by means of the <a target="_blank" href="https://docs.arduino.cc/software/ide-v1/tutorials/installing-libraries"><b>Library Manager</b></a></p>
+</section>
+
+<section>
+	<h4>Let us connect the OLED</h4>
+	<img src="./images/oled_schematic.svg" alt="schematic oled" style="height:550px;"/>
+</section>
+
+<section>
+	<p>Let us import libraries and create the instance for the <b>SSD1306</b> controller</p>
+  <pre><code data-trim data-noescape class="cpp">
+#include &lt;Adafruit_GFX.h&gt;
+#include &lt;Adafruit_SSD1306.h&gt;
+#include &lt;Wire.h&gt;
+
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+
+// Create display controller instance
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire);
+  </code></pre>
+</section>
+
+<section>
+	<p>We introduce a <b>helper function</b> to write text on the display</p>
+	<pre><code data-trim data-noescape class="cpp">
+void displayText(String text,
+				int size = 1,
+				int color = WHITE,
+				bool clean = true,
+				int cursorPositionX = 0,
+				int cursorPositionY = 0) {
+	if(clean) display.clearDisplay();		// Clean display
+	display.setTextColor(color);			// Set the color
+	display.setTextSize(size);				// Set the text size
+	display.setCursor(cursorPositionX,
+					  cursorPositionY);		// Set cursor position
+	display.println(text);					// Print the text
+	display.display();						// Display the text
+}
+	</code></pre>
+</section>
+
+<section>
+	<p>Now, we create the <b>setup</b> and <b>loop</b> functions<p>
+	<pre style="width: 900px"><code data-trim data-noescape class="cpp">
+void setup() {
+	// Try to initialize the display at address 0x3C
+	if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) while (true);
+
+	display.clearDisplay();		// Clean the display buffer
+	display.display();			// Show the display buffer
+}
+
+void loop() {
+	displayText(F("Arduino"), 3);	// Display first message
+	delay(2000);
+	displayText(F("POuL"), 3);		// Display second message
+	delay(2000);
+}
+	</code></pre>
+
+	<small class="fragment">What is that <a target="_blank" href="https://www.arduino.cc/reference/en/language/variables/utilities/progmem/"><b><code>F(&middot;)</code></b></a>?</small>
+</section>

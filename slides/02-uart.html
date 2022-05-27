@@ -1,0 +1,57 @@
+<section>
+	<h2>UART</h2>
+</section>
+
+<section>
+	<p style="font-size: 1.3em;"><b>U</b>niversal <b>A</b>synchronous <b>R</b>eceiver-<b>T</b>ransmitter</p>
+
+	<ul style="font-size: 1em;">
+		<li class="fragment">It allows <b>two</b> devices to communicate</li>
+		<li class="fragment">It requires only <b>two wires</b><br/>
+			<font size="+2">Plus a common ground</font></li>
+		<li class="fragment">It is a <b>serial protocol</b><br/>
+			<font size="+2">Data is sent serially on the same wire</font></li>
+		<li class="fragment">It is <b>full-duplex</b><br/>
+			<font size="+2">Data can flow in <b>both directions</b> at the same time<br/>
+				One of the devices uses a wire to transmit(TX) and the other to receive(RX), the second device
+				<b>switches</b> the wires</font></li>
+	</ul>
+</section>
+
+<section>
+	<p style="font-size: 1.3em;"><b>U</b>niversal <b>A</b>synchronous <b>R</b>eceiver-<b>T</b>ransmitter</p>
+
+	<ul style="font-size: 1em;">
+		
+		<li class="fragment">It is <b>asynchronous</b><br/>
+			<font size="+2">There is not an explicit signal to <b>constantly synchronize</b> the devices (see later)</font></li>
+		<li class="fragment">It supports a wide range of <b>baud rates</b><br/>
+			<font size="+2">From 50 bits/s to 921600 bits/s</font></li>
+		<li class="fragment">You probably know it with the name
+			<a target="_blank" href="https://en.wikipedia.org/wiki/RS-232"><b>RS-232</b></a> (one of its implementations)
+		</li>
+		<li class="fragment">It is (probably) the dumbest protocol you can know</li>
+		<br><br> <!-- lmao? -->
+	</ul>
+</section>
+
+<section>
+	<img src="./images/uart_diagram.svg" alt="UART diagram" style="max-width:initial;width:800px;"/>
+</section>
+
+<section>
+	<p><b>Arduino UNO R3</b> has dedicated hardware for <b>UART</b> which exposes RX on pin 0 and TX on pin 1</p>
+
+	<p class="fragment">It uses <b>UART</b> both for <b>serial communications</b> with pc
+		(<a target="_blank" href="https://www.arduino.cc/reference/en/language/functions/communication/serial/"><b>Serial</b></a>)
+		and for <b>uploading sketches</b>* on it</p>
+
+	<small class="fragment">* n.b. pay attention when you have two Arduinos connected using UART during the upload phase</small>
+</section>
+
+<section>
+	<p><b>UART</b> is a simple protocol,<br/>it does <b>not require complex hardware</b> to work,<br/>
+		and it can be easily implemented also as <b>software</b> (<a target="_blank" href="https://docs.arduino.cc/learn/built-in-libraries/software-serial"><b>SoftwareSerial*</b></a>)</p>
+
+	<small class="fragment">* you can use it if your project requires <b>multiple UART</b></small>
+</section>
