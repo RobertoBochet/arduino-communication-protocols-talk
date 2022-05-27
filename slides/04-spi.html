@@ -7,27 +7,28 @@
 
 	<ul style="font-size: 1em;">
 		<li class="fragment">It is a <b>bus</b> based protocol<br/>
-			<font size="+2">Data for all devices travels on the same wires</font></li>
+			<small style="font-size:0.7em;">Data for all devices travels on the same wires</small></li>
 		<li class="fragment">It implements <b>master/slave</b> architecture<br/>
-			<font size="+2">Only the masters can start a payload exchange</font></li>
+			<small style="font-size:0.7em;">Only the masters can start a payload exchange</small></li>
 		<li class="fragment">It requires <b>three wires</b> for data called <b>SCLK</b>, <b>MOSI</b><br/>and <b>MISO</b> plus one wire <b>SS</b> for each slave<br/>
-			<font size="+2">Plus a common ground, which is shared by all devices</font></li>
+			<small style="font-size:0.7em;">Plus a common ground, which is shared by all devices</small></li>
 		<li class="fragment">It is a <b>serial protocol</b><br/>
-			<font size="+2">Data is sent serially on the same wire</font></li>
+			<small style="font-size:0.7em;">Data is sent serially on the same wire</small></li>
 	</ul>
 </section>
 
 <section>
-	<p style="font-size: 1.3em;"><b>S</b>erial <b>P</b>eripheral <b>I</b>nterface</p>
+	<p style="font-size: 1.3em;"><b>S</b>erial <b>P</b>eripheral <b>I</b>nterface<br/>
+		<small>(continues...)</small></p>
 
 	<ul style="font-size: 1em;">
 		<li class="fragment">It is a <b>full-duplex</b> protocol<br/>
-			<font size="+2">Data can flow in <b>both directions</b> at the same moment<br/></font></li>
+			<small style="font-size:0.7em;">Data can flow in <b>both directions</b> at the same moment<br/></small></li>
 		<li class="fragment">It is <b>synchronous</b><br/>
-			<font size="+2">The master emits on the <b>SCLK</b> wire a periodic signal in order to share a <b>common clock</b> for all devices</font></li>
+			<small style="font-size:0.7em;">The master emits on the <b>SCLK</b> wire a periodic signal in order to share a <b>common clock</b> for all devices</small></li>
 		<li class="fragment">It is a <b>fast</b> protocol (compared to others)</li>
 		<li class="fragment">It is <b>widely</b> used by integrated circuits<br>
-			<font size="+2">It is certainly (another) one of the most used communication <br>protocols for commercial chips</font></li>
+			<small style="font-size:0.7em;">It is certainly (another) one of the most used communication <br>protocols for commercial chips</small></li>
 		</ul>
 </section>
 
@@ -65,4 +66,132 @@
 <section>
 	<h4>Let us add the component to our circuits</h4>
 	<img src="./images/nfc_oled_schematic.svg" alt="schematic nfc and oled" style="height:550px;"/>
+</section>
+
+<section>
+	<p>Let us import the <b>libraries</b> and define handy <b>variables</b></p>
+  <pre style="font-size: 0.5em;"><code data-trim data-noescape class="cpp" >
+#include &lt;SPI.h&gt;
+#include &lt;MFRC522.h&gt;
+#include &lt;Wire.h&gt;
+#include &lt;Adafruit_GFX.h&gt;
+#include &lt;Adafruit_SSD1306.h&gt;
+
+#define NFC_SS_PIN 10
+#define NFC_RST_PIN 4
+
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+
+#define BLOCK_SIZE 16
+#define TARGET_SECTOR 1
+#define TARGET_BLOCK 4
+#define BUFFER_LEN 18
+</code></pre>
+</section>
+
+<section>
+	<p>Let us create the instance for the <b>MFRC522</b> controller</p>
+  <pre><code data-trim data-noescape class="cpp">
+byte bufferLen = BUFFER_LEN;
+byte bufferRFID[BUFFER_LEN];
+MFRC522::StatusCode statusRFID;
+MFRC522::MIFARE_Key keyRFID;
+
+// MFRC522 instance
+MFRC522 mfrc522(NFC_SS_PIN, NFC_RST_PIN);
+// Display instance
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire);
+</code></pre>
+</section>
+
+<section>
+	<p><b>Setup</b> function</p>
+  <pre style="font-size: 0.5em;"><code data-trim data-noescape class="cpp">
+void setup() {
+	Serial.begin(9600);		// Init UART
+	SPI.begin();			// Init SPI
+
+	// Default key creation 0xFFFFFFFFFFFF
+	for(int i = 0; i < 6; i++) keyRFID.keyByte[i] = 0xFF;
+
+	// Init the MFCR522
+	mfrc522.PCD_Init();
+
+	// Try to initialize the display at address 0x3C
+	if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) while (true);
+
+	display.clearDisplay();		// Clean the display buffer
+	display.display();			// Show the display buffer
+}
+</code></pre>
+</section>
+
+<section>
+	<p>Inside the <b>loop</b> function</p>
+  <pre style="font-size: 0.5em;"><code data-trim data-noescape class="cpp" style="max-height: initial;">
+if (!mfrc522.PICC_IsNewCardPresent()) return;   // Look for new cards
+if (!mfrc522.PICC_ReadCardSerial()) return;     // Select one of the cards
+
+// Printing the UID of the card
+Serial.print(F("UID: "));
+for(int i = 0; i < mfrc522.uid.size; i++) {
+	Serial.print(mfrc522.uid.uidByte[i], HEX);
+	Serial.print(" ");
+}
+Serial.println("");
+
+// Authentication utilizing KEY A
+Serial.println(F("Authenticating using KEY A"));
+statusRFID = (MFRC522::StatusCode) mfrc522.PCD_Authenticate(
+	MFRC522::PICC_CMD_MF_AUTH_KEY_A, TARGET_BLOCK,
+	&keyRFID, &(mfrc522.uid));
+if (statusRFID != MFRC522::STATUS_OK) {
+	Serial.print(F("PCD_Authenticate() failed: "));
+	Serial.println(mfrc522.GetStatusCodeName(statusRFID));
+	return;
+}
+</code></pre>
+</section>
+
+<section>
+	<p>Inside the <b>loop</b> function<br/><small>(continues...)</small></p>
+  <pre style="font-size: 0.5em; margin-top: 0;"><code data-trim data-noescape class="cpp" style="max-height: initial;">
+// Reading data from target block
+Serial.print(F("Reading data from block ")); Serial.println(TARGET_BLOCK);
+statusRFID = (MFRC522::StatusCode) mfrc522.MIFARE_Read(TARGET_BLOCK,
+	bufferRFID, &bufferLen);
+if (statusRFID != MFRC522::STATUS_OK) {
+	Serial.print(F("MIFARE_Read() failed: "));
+	Serial.println(mfrc522.GetStatusCodeName(statusRFID));
+}
+
+// Converting the buffer into string format
+String message = (char *) bufferRFID;
+String messageHEX = "";
+for(int i = 0; i < BUFFER_LEN; i++)
+	messageHEX += String(bufferRFID[i], HEX) + " ";
+
+// Displaying the message on the console and OLED screen
+Serial.print(F("Message bytes: "));
+Serial.println(messageHEX);
+displayText(messageHEX);
+
+mfrc522.PICC_HaltA();		// Halt PICC
+mfrc522.PCD_StopCrypto1();	// Stop encryption on PCD
+</code></pre>
+</section>
+
+<section>
+	<p>And for <b>writing</b> on the NFC you can use...</p>
+  <pre style="font-size: 0.5em;"><code data-trim data-noescape class="cpp">
+// Writing data to target block
+Serial.print(F("Writing data into block ")); Serial.println(TARGET_BLOCK);
+statusRFID = (MFRC522::StatusCode) mfrc522.MIFARE_Write(TARGET_BLOCK,
+	dataBlock, BLOCK_SIZE);
+if (statusRFID != MFRC522::STATUS_OK) {
+	Serial.print(F("MIFARE_Write() failed: "));
+	Serial.println(mfrc522.GetStatusCodeName(statusRFID));
+}
+</code></pre>
 </section>

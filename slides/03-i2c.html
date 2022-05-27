@@ -5,35 +5,35 @@
 <section>
 	<p style="font-size: 1.3em;"><b>I</b>nter <b>I</b>ntegrated <b>C</b>ircuit</p>
 
-	<ul style="font-size: 0.85em;">
+	<ul style="font-size:0.85em;">
 		<li class="fragment">It is a <b>bus</b> based protocol<br/>
-			<font size="+2">Data for all devices travels on the same wires</font></li>
+			<small style="font-size:0.7em;">Data for all devices travels on the same wires</small></li>
 		<li class="fragment">It implements <b>master/slave</b> architecture<br/>
-			<font size="+2">Only the masters can start a payload exchange, generally there is <br> only one master for each bus</font></li>
+			<small style="font-size:0.7em;">Only the masters can start a payload exchange,<br/>generally there is <br> only one master for each bus</small></li>
 		<li class="fragment">It allows up to <b>112</b> (7bit addresses) devices to communicate<br/>
-			<font size="+2">A review extended addresses to 10bit</font></li>
+			<small style="font-size:0.7em;">A review extended addresses to 10bit</small></li>
 		<li class="fragment">It requires only <b>two wires</b> called <b>SCL</b> and <b>SDA</b><br/>
-			<font size="+2">Plus a common ground, which is shared by all devices</font></li>
+			<small style="font-size:0.7em;">Plus a common ground, which is shared by all devices</small></li>
 		<li class="fragment">It is a <b>serial protocol</b><br/>
-			<font size="+2">Data is sent serially on the same wire</font></li>
-		<br><br><br> <!-- lmao? -->
+			<small style="font-size:0.7em;">Data is sent serially on the same wire</small></li>
 	</ul>
 </section>
 
 <section>
-	<p style="font-size: 1.3em;"><b>I</b>nter <b>I</b>ntegrated <b>C</b>ircuit</p>
+	<p style="font-size: 1.3em;"><b>I</b>nter <b>I</b>ntegrated <b>C</b>ircuit<br/>
+		<small>(continues...)</small></p>
 
 	<ul style="font-size: 0.85em;">
 		<li class="fragment">It is a <b>half-duplex</b> protocol<br/>
-			<font size="+2">Data can flow in <b>only one direction</b> at the same moment<br/></font></li>
+			<small style="font-size:0.7em;">Data can flow in <b>only one direction</b> at the same moment<br/></small></li>
 		<li class="fragment">It is <b>synchronous</b><br/>
-			<font size="+2">The master emits on the <b>SCL</b> wire a periodic signal in order to share a <b>common clock</b> for all devices</font></li>
+			<small style="font-size:0.7em;">The master emits on the <b>SCL</b> wire a periodic signal<br/>in order to share a <b>common clock</b> for all devices</small></li>
 		<li class="fragment">It is a <b>slow</b> protocol (compared to others)<br/>
-			<font size="+2">The protocol has a standard baud rate of 100kbit/s, reviews introduced a speed up to 3.4Mbit/s (High Speed mode)</font></li>
+			<small style="font-size:0.7em;">The protocol has a standard baud rate of 100kbit/s,<br/>reviews introduced a speed up to 3.4Mbit/s (High Speed mode)</small></li>
 		<li class="fragment">It is intended to allow communication between <b>integrated circuits on the same pcb</b><br/>
-			<font size="+2">Bus length in the order of 10cm</font></li>
+			<small style="font-size:0.7em;">Bus length in the order of 10cm</small></li>
 		<li class="fragment">It is <b>widely</b> used by integrated circuits<br>
-			<font size="+2">It is certainly one of the most used communication protocol for commercial chips</font></li>
+			<small style="font-size:0.7em;">It is certainly one of the most used communication protocol for commercial chips</small></li>
 	</ul>
 </section>
 
